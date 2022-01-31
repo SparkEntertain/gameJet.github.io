@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    @font-face {
+        font-family: font0;
+        src: url('Blogger_Sans.otf');
+    }
+@font-face {
+        font-family: font1;
+        src: url('Blogger_Sans_Bold.otf');
+    }
+@font-face {
+        font-family: font2;
+        src: url("Days.otf");
+    }
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+        #tombol {
+            display: none;
+        }
+        #atas {
+            border: 3px solid lightblue;
+            background-image: url("atas.png");
+            font-size: 25px;
+            background-size: 73px;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 62%;
+            right: 42%;
+            width: 80;
+            height: 80;
+            border-radius: 100%;
+        }
+        #bawah {
+            background-image: url("bawah.png");
+            font-size: 25px;
+            border: 3px solid lightblue;
+            background-color: black;
+            position: fixed;
+            top: 82%;
+            right: 41%;
+            width: 80;
+            height: 80;
+            border-radius: 100%;
+        }
+        #kanan {
+            background-image: url("kanan.png");
+            font-size: 25px;
+            border: 3px solid lightblue;
+            background-color: black;
+            position: fixed;
+            top: 72%;
+            right: 22%;
+            width: 80;
+            height: 80;
+            border-radius: 100%;
+        }
+        #kiri {
+            background-image: url("kiri.png");
+            font-size: 25px;
+            position: fixed;
+            top: 72%;
+            right: 63%;
+            border: 3px solid lightblue;
+            background-color: black;
+            width: 80;
+            height: 80;
+            border-radius: 100%;
+        }
+        #kiri:active {
+            transition: 500ms;
+            width: 90px;
+            height: 90px;
+            background-size: 80px 80px;
+            border: 10px solid #00f719;
+        }
+        #kanan:active {
+            background-size: 80px 80px;
+            transition: 500ms;
+            width: 90px;
+            height: 90px;
+            border: 10px solid #00f719;
+        }
+        #atas:active {
+            background-size: 80px 80px;
+            transition: 500ms;
+            width: 90px;
+            height: 90px;
+            border: 10px solid #00f719;
+        }
+        #bawah:active {
+            transition: 500ms;
+            width: 90px;
+            height: 90px;
+            border: 10px solid #00f719;
+            background-size: 80px 80px;
+        }
+        canvas {
+            border: 2px black solid;
+            display: block;
+        }
+
+        #tombol {
+            display: none;
+        }
+
+        #wadah {
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 50%);
+            border: 5px solid black;
+            border-radius: 10px;
+            width: 720px;
+            height: 500px;
+            background-image: url("bg011.png");
+        }
+        #icon {
+            transition: 200ms;
+            width: 720px;
+            height: 100px;
+            background-image: url("icon.png");
+        }
+        #icon:active {
+            background-size: 800px, 200px;
+            height: 110px;
+            transition: 200ms;
+        }
+        #mulai00 {
+            transition: 500ms;
+            font-size: 30px;
+            font-family: font1;
+            width: 150px;
+            height: 70px;
+            border: 2px solid black;
+            border-radius: 10px 15px;
+            color: white;
+            background-color: #ff7b00;
+            box-shadow: 3px 3px 3px 3px white;
+            position: absolute;
+            left: 90%;
+            bottom: 50%;
+        }
+        #mulai00:active {
+            width: 130px;
+            height: 50px;
+            font-size: 15px;
+            background-color: lightgreen;
+            color: black;
+        }
+        #to {
+            padding-top: 20px;
+            font-size: 30px;
+            text-align: center;
+            border: 5px solid black;
+            background-color: white;
+            width: 400px;
+            margin-right: 2px;
+            height: 340px;
+            display: none;
+            border-radius: 10px;
+        }
+        #myrestartbutton {
+            font-family: font1;
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid lightblue;
+            color: white;
+            font-size: 20px;
+            background-color: #0088ff;
+            transition: 200ms;
+        }
+        #myrestartbutton:active {
+            font-size: 15;
+            color: black;
+            width: 130px;
+            height: 30px;
+            border: 2px solid blue;
+            background-color: lightgreen;
+        }
+        #canvas {
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 50%);
+            display: none;
+        }
+        #sud {
+            margin-top: 10px;
+            font-family: font1;
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid lightblue;
+            color: white;
+            font-size: 20px;
+            background-color: #0088ff;
+            transition: 200ms;
+        }
+        #sud:active {
+            font-size: 15;
+            color: black;
+            width: 130px;
+            height: 30px;
+            border: 2px solid blue;
+            background-color: lightgreen;
+        }
+                #home {
+            margin-top: 10px;
+            font-family: font1;
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid lightblue;
+            color: white;
+            font-size: 20px;
+            background-color: #0088ff;
+            transition: 200ms;
+        }
+        #home:active {
+            font-size: 15;
+            color: black;
+            width: 130px;
+            height: 30px;
+            border: 2px solid blue;
+            background-color: lightgreen;
+        }
+        /*ganti skin css*/
+        #gear {
+            width: 70;
+            height: 70;
+            background-image: url("gear.png");
+            background-repeat: no-repeat;
+            background-size: 70px, 70px;
+            position: absolute;
+            left: 170%;
+            top: 50%;
+            transition-duration: 2s;
+        }
+        #gear:hover {
+            transform: rotate(-360deg);
+        }
+
+
+
+        #transp {
+            width: 300;
+            height: 200;
+            background-color: lightblue;
+            border: 5px solid blue;
+            position: absolute;
+            left: 100%;
+            border-radius: 20px;
+            top: 30%;
+            display: none;
+
+        }
+        #skin1 {
+            width: 50;
+            height: 50;
+            background-image: url("s1.png");
+            background-size: 50px, 50px;
+           border: none;
+           border-radius: 5px;
+        }
+        #skin1:Hover{
+            border: 5px solid green;
+        }
+        #skin2:Hover{
+            border: 5px solid green;
+        }
+        #skin2 {
+        width: 50;
+            height: 50;
+            background-image: url("s2.png");
+            background-size: 50px, 50px;
+           border: none;
+           border-radius: 5px;
+            
+        }
+        #nol{
+            display: flex;
+        }
+        #two{
+            font-size: 20px;
+            font-family: font1;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            border-radius: 100%;
+            color: white;
+            background-color: #ff7b00;
+            box-shadow: 3px 3px 3px 3px white;
+        }
+                #one{
+            font-size: 20px;
+            font-family: font1;
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            border-radius: 100%;
+            color: white;
+            background-color: #0088ff;
+            box-shadow: 3px 3px 3px 3px white;
+        }
+        #cpy{
+            position:absolute;
+            bottom: 160px;
+            margin-left: 20px;
+        }
+        
+        /*pemilihan level*/
+        .dd {
+            
+         position: absolute;
+            left: 50%;
+            bottom: 50%;
+         display: inline-block;
+         font-family: font0;
+      }
+      .dd-btn {
+         padding: 15px;
+         text-align: center;
+         background: #173459;
+         border: none;
+         width: 100px;
+         color: #f8f9f9;
+         border-radius:10px;
+         font-family: font0;
+         transition: 1s;
+      }
+      .dd-btn:Hover{
+          background-color: lightgreen;
+          color: black;
+          border: 2px solid black;
+          transition: 1s;
+      }
+      .dd-content {
+          background-color: white;
+          border-top-left-radius: none;
+          border-top-right-radius: none;
+          border-radius: 10px;
+         position: absolute;
+         width: 100px;
+         box-shadow: 0 18px 36px rgba(0,0,0,0.30), 0 14px 11px rgba(0,0,0,0.22);
+         height: 0px;
+         transition: height 1s;
+         overflow: hidden;
+      }
+      .dd:hover > .dd-content {
+         height: 200px;
+      }
+      .dd-content > div {
+         display: block;
+         padding: 15px;
+         text-decoration: none;
+         color: black;
+      }
+      #ez:active{
+          background-color: lightblue;
+      }
+      #norm:active{
+          background-color: lightblue;
+      }
+      #hard:active{
+          background-color: lightblue;
+      }
+    </style>
+</head>
+<body contenteditable="false">
+
+
+    <div id="wadah">
+            <p style="font-family:font2" id="cpy">©SparkCorp</p>
+        <div onclick="ganti()" id="icon"></div>
+        <button onclick="mul()" id="mulai00"><b>MULAI</b></button>
+        <div onclick="pengaturan()" id="gear"></div>
+        <div id="transp">
+            <p onclick="hilang()" style="color:red; font-family:font1; font-size:50px;position:absolute; bottom:90px; padding-left:10px;border: 4px solid black;border-radius:10px;background-color:lightgray">
+                x
+            </p>
+            <br><br><br><br>
+            &nbsp;&nbsp;<b style="font-size:20px">pilih skin kamu:</b><br>
+            <div id="nol">
+            &nbsp;&nbsp;<div onclick="s1()" id="skin1"></div>&nbsp;&nbsp;
+            <div onclick="s2()" id="skin2"></div>
+            </div>
+
+        </div>
+        
+            <!--PEMILIHAN LEVEL PERMAINAN-->
+    <div class="dd" id="pillev">
+      <button onclick="peringatan()" class="dd-btn"> pilih level permainan </button>
+      <div class="dd-content">
+         <div onclick="ez()" id="ez"> • bocil </div>
+         <div onclick="norm()" id="norm"> • normal </div>
+         <div onclick="hard()" id="hard"> • sulit </div>
+                  <div style="color:red" onclick="imp()" id="imp">•impossible </div>
+         </div>
+         </div>
+    
+    
+    </div>
+
+    <div id="myfilter" style="position:absolute;background-color:#000000;opacity:0.3;width:700px;height:500px;display:none"></div>
+    <div id="myrestartbutton" style="position:absolute;padding-top:75px;padding-left:120px;display:none;">
+    </div>
+    <!--mendeklarasikan tabel game over-->
+    <div id="canvascontainer"></div>
+    <div id="to">
+        <p id="end" style="font-family:font1">
+            Mau bermain lagi?
+        </p>
+        <p style="text-align:left, padding-left: 5px" id="sc"></p>
+        <button onclick="restartGame()" id="myrestartbutton">Restart</button>
+        <button onclick="sudah()" id="sud">Keluar</button>
+        <button onclick="home()" id="home">Home</button>
+    </div>
+    <canvas id="canvas"></canvas>
+    <button style="display:none" onclick="sone()" id="one">Venus jet</button>
+    <button style="display:none" onclick="stwo()" id="two">rocket</button>
+    
+
+    <script>
+
+        var player;
+        var myObstacles = [];
+        var myScore;
+        var myBackground;
+        
+        //MODE PERMAINAN
+function peringatan(){
+    var myTimeout = setTimeout(function() {
+        alert("untuk me-restart level permainan, kamu bisa refresh website ini!!");
+    },
+        1050);
+}
+
+        function ez(){
+            
+            this.start = setInterval(updateGameArea, 500);
+            document.getElementById("norm").style="display:none";
+            document.getElementById("hard").style="display:none";
+            document.getElementById("imp").style="display:none";
+        }
+        function norm(){
+            
+            this.start = setInterval(updateGameArea, 20);
+             document.getElementById("ez").style="display:none";
+            document.getElementById("hard").style="display:none";
+            document.getElementById("imp").style="display:none";
+        }
+        function hard(){
+            
+            this.start = setInterval(updateGameArea, 10);
+             document.getElementById("norm").style="display:none";
+            document.getElementById("ez").style="display:none";
+            document.getElementById("imp").style="display:none";
+        }
+        function imp(){
+            
+            this.start = setInterval(updateGameArea, 1);
+             document.getElementById("norm").style="display:none";
+            document.getElementById("ez").style="display:none";
+document.getElementById("hard").style="display:none";
+        }
+
+        function pengaturan() {
+            var myTimeout = setTimeout(function() {
+                document.getElementById("transp").style = "display:block";
+            }, 1000);
+        }
+        //FUNGSI S1 DAN S2
+function s1(){
+    document.getElementById("one").style="display:block";
+    alert("aktifkan skin di ingamenya!!");
+}
+function s2(){
+    document.getElementById("two").style="display:block";
+    alert("aktifkan skin di ingamenya!!");
+}
+//FUNGSI TOMBOL SKIN
+function sone(){ 
+player = new component(60, 60, "s1.png", 10, 120, "image");
+document.getElementById("one").style="display:none";
+
+function moveright() {
+            player.image.src = "s1.png";
+            player.speedX = 1;
+        }
+
+        function clearmove() {
+            player.image.src = "s1.png";
+            player.speedX = 0;
+            player.speedY = 0;
+        }
+        }
+        
+        
+        function stwo(){ 
+player = new component(60, 60, "s2.png", 10, 120, "image");
+document.getElementById("two").style="display:none";
+
+function moveright() {
+            player.image.src = "s2.png";
+            player.speedX = 1;
+        }
+
+        function clearmove() {
+            player.image.src = "s2.png";
+            player.speedX = 0;
+            player.speedY = 0;
+        }
+        }
+        
+        //END TOMBOL GANTI
+
+        function hilang () {
+            document.getElementById("transp").style = "display:none";
+        }
+
+        function startGame() {
+            //PLAYER
+            player = new component(60, 60, "plane.png", 10, 120, "image");
+            myScore = new component("30px", "font2", "black", 280, 40, "text");
+            //background
+            myBackground = new component(720, 500, "bg011.jpg", 0, 0, "background");
+
+            myGameArea.start();
+
+        }
+
+        var myGameArea = {
+            canvas: document.getElementById("canvas"),
+            start: function() {
+                this.canvas.width = 720;
+                this.canvas.height = 500;
+                document.getElementById("canvascontainer").appendChild(this.canvas);
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.frameNo = 0;
+                this.pause = false;
+                //kecepatan game
+                this.start = setInterval(updateGameArea, 20);
+            },
+            clear: function() {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            },
+            stop: function() {
+                clearInterval(this.interval);
+            }
+        }
+        //komponen yang di butuhkan dalam game
+        function component(width, height, color, x, y, type) {
+            this.type = type;
+            //gambar
+            if (type == "image") {
+                this.image = new Image();
+                this.image.src = color;
+            }
+            if (type == "image" || type == "background") {
+                this.image = new Image();
+                this.image.src = color;
+            }
+            this.width = width;
+            this.height = height;
+            this.speedX = 0;
+            this.speedY = 0;
+            this.x = x;
+            this.y = y;
+            this.update = function() {
+                ctx = myGameArea.context;
+                if (this.type == "text") {
+                    ctx.font = this.width + " " + this.height;
+                    ctx.fillStyle = color;
+                    ctx.fillText(this.text, this.x, this.y);
+                } else if (type == "image") {
+                    ctx.drawImage(this.image,
+                        this.x,
+                        this.y,
+                        this.width, this.height);
+
+                }
+                if (type == "image" || type == "background") {
+                    ctx.drawImage(this.image,
+                        this.x,
+                        this.y,
+                        this.width, this.height);
+                    if (type == "background") {
+                        ctx.drawImage(this.image,
+                            this.x + this.width,
+                            this.y,
+                            this.width, this.height);
+                    }
+                } else {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+            }
+
+
+            //batas bawah
+            this.newPos = function() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.hitBottom();
+                if (this.type == "background") {
+                    if (this.x == -(this.width)) {
+                        this.x = 0;
+                    }
+                }
+            }
+
+            this.hitBottom = function() {
+                var batasbawah = myGameArea.canvas.height - this.height;
+                if (this.y > batasbawah) {
+                    this.y = batasbawah;
+                }
+            }
+
+            this.crashWith = function(otherobj) {
+                var myleft = this.x;
+                var myright = this.x + (this.width);
+                var mytop = this.y;
+                var mybottom = this.y + (this.height);
+                var otherleft = otherobj.x;
+                var otherright = otherobj.x + (otherobj.width);
+                var othertop = otherobj.y;
+                var otherbottom = otherobj.y + (otherobj.height);
+                var crash = true;
+                if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+                    crash = false;
+                }
+                return crash;
+            }
+        }
+
+        function updateGameArea() {
+            var x,
+            height,
+            gap,
+            minHeight,
+            maxHeight,
+            minGap,
+            maxGap;
+
+            //JIKA pesawat menabrak
+
+            for (i = 0; i < myObstacles.length; i += 1) {
+                if (player.crashWith(myObstacles[i])) {
+                    myGameArea.stop();
+                    document.getElementById("to").style = "display:block";
+                    document.getElementById("sc").innerHTML = "<p style='font-family:font1'>score kamu adalah:</p>" + myGameArea.frameNo;
+                    document.getElementById("canvas").style = "display:none";
+                    document.getElementById("tombol").style = "display:none";
+                    
+                    return;
+
+
+                }
+            }
+            myGameArea.clear();
+            myGameArea.frameNo += 1;
+            if (myGameArea.frameNo == 1 || everyinterval(155)) {
+                x = myGameArea.canvas.width;
+                minHeight = 20;
+                maxHeight = 200;
+                height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+                minGap = 150;
+                maxGap = 200;
+
+                //rintangan
+
+                gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+                myObstacles.push(new component(80, height, "green", x, 0));
+                myObstacles.push(new component(80, x - height - gap, "green", x, height + gap));
+            }
+            for (i = 0; i < myObstacles.length; i += 1) {
+                myObstacles[i].x += -1;
+                myObstacles[i].update();
+            }
+
+            myBackground.speedX = -1;
+            myBackground.newPos();
+            myBackground.update();
+            myScore.text = "SCORE: " + myGameArea.frameNo;
+            myScore.update();
+            player.newPos();
+            player.update();
+        
+
+            for (i = 0; i < myObstacles.length; i += 1) {
+                myObstacles[i].x += -1;
+                myObstacles[i].update();
+            }
+        }
+
+        function everyinterval(n) {
+            if ((myGameArea.frameNo / n) % 1 == 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function moveup() {
+            player.speedY = -1;
+        }
+
+        function movedown() {
+            player.speedY = 1;
+        }
+
+        function moveleft() {
+            player.speedX = -1;
+        }
+
+        function moveright() {
+            player.speedX = 1;
+        }
+
+        function clearmove() {
+            player.speedX = 0;
+            player.speedY = 0;
+        }
+
+        //TOMBOL Restart
+        function restartGame() {
+            document.getElementById("myfilter").style = "display:none";
+            document.getElementById("myrestartbutton").style = "display:none";
+            document.getElementById("canvas").style = "display:block";
+            document.getElementById("to").style = "display:none";
+            myGameArea.stop();
+            myGameArea.clear();
+            document.getElementById("tombol").style = "display:block";
+            player = {};
+            myObstacles = [];
+            myscore = {};
+            document.getElementById("canvascontainer").innerHTML = "";
+            startGame();
+            document.getElementById("wadah").style="display:block";
+        }
+
+        function ganti() {
+            
+            document.getElementById("wadah").style = "background-image:url('bgg.gif')";
+            document.getElementById("icon").style = "display:none";
+            document.getElementById("mulai00").style = "display:none";
+            document.getElementById("pillev").style="display:none";
+            
+            var myTimeout = setTimeout(function() {
+                document.getElementById("pillev").style="display:block";
+                document.getElementById("wadah").style = "background-image:url('bg011.png')";
+                document.getElementById("icon").style = "display:block";
+                document.getElementById("mulai00").style = "display:block";
+            }, 10000);
+
+        }
+
+
+        function mul() {
+            document.getElementById("wadah").style = "display:none";
+            document.getElementById("tombol").style = "display:block";
+            document.getElementById("canvas").style = "display:block";
+            startGame();
+        }
+        function sudah() {
+            document.getElementById("to").style = "display:none";
+            myGameArea.stop();
+            myGameArea.clear();
+            player = {};
+            myObstacles = [];
+            myscore = {};
+            document.getElementById("one").style="display:none";
+            document.getElementById("two").style="display:none";
+        }
+        function home(){
+            myGameArea.stop();
+            myGameArea.clear();
+            player = {};
+            myObstacles = [];
+            myscore = {};
+ 
+            document.getElementById("to").style = "display:none";
+            document.getElementById("wadah").style="display:block";
+            document.getElementById("ez").style="display:block";
+            document.getElementById("norm").style="display:block";
+            document.getElementById("hard").style="display:block";
+        }
+
+        //SKINS
+
+    </script>
+    <!--PARTICLE.JS-->
+    <script src="particle.js"></script>
+
+    <div id="tombol">
+        <button class="cnt" onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()" id="kiri"></button></button>
+    <button class="cnt" onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()" id="atas"></button><br><br>
+    <button class="cnt" onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()" id="bawah"></button>
+    <button class="cnt" onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()" id="kanan"></button>
+</div>
+
+</body>
+</html>
